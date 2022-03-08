@@ -60,6 +60,9 @@ if __name__ == "__main__":
             slot = check_input("Choose which slot to pick up (index at 0): ")
         else:
             # AI
+
+            # slot =
+
             print("")
 
         game_seq.append((player_turn, slot))
