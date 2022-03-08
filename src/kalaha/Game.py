@@ -14,6 +14,10 @@ class Game:
         return self.player_turn
 
     def take_slot(self, pocket):
+
+        # pocket: slot choice from the player
+        # This function takes the input and change the board layout, etc
+
         if pocket > 5:
             return False
         if pocket < 0:
@@ -24,7 +28,7 @@ class Game:
         # Get players information
         opposite_player_turn = 0 if self.player_turn == 1 else 1
 
-        # Concat all pockets into one long list without the opposing players store, but with current player's store
+        # Concatenate all pockets into one long list without the opposing players store, but with current player's store
         concat_states = self.state[self.player_turn] + self.state[opposite_player_turn]
         concat_states = concat_states[0:-1]
 
@@ -35,6 +39,7 @@ class Game:
         # Place all pieces in next pockets
         for _ in range(pocket_pieces):
             pocket += 1
+            # if we have too many pieces, we start from the beginning of the array again
             if pocket >= len(concat_states):
                 pocket = 0
             concat_states[pocket] += 1
@@ -47,7 +52,7 @@ class Game:
         if concat_states[pocket] == 1 and pocket < 6 and concat_states[pocket + ((5 - pocket) * 2 + 2)] > 0:
             self.capture(pocket)
 
-        # New turn if pocket isnt in store
+        # New turn if pocket isn't in store
         self.player_turn = opposite_player_turn if pocket != 6 else self.player_turn
         return True
 
@@ -63,7 +68,7 @@ class Game:
         self.state[opposite_player_turn][pocket] = 0
 
     def is_terminal_state(self):
-        # Is terminal state if one of the sides have no pieces
+        # Is terminal state: if one of the sides have no pieces
         if sum(self.state[self.player_turn][0:-1]) == 0:
             return True
         if sum(self.state[self.player_turn if self.player_turn == 1 else 1][0:-1]) == 0:
@@ -71,7 +76,7 @@ class Game:
         return False
 
     def end_game(self):
-        # Calculate final scores
+        # Calculate final scores with pieces not in the store
         player1_sum = sum(self.state[0][0:-1])
         player2_sum = sum(self.state[1][0:-1])
         self.state[0][-1] += player1_sum
