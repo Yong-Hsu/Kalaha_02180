@@ -4,7 +4,7 @@ import sys
 def Minimax(game, depth, isMax):
     temp = copy.deepcopy(game)
     if depth == 0 | TerminalState(temp):
-
+        return Evaluation(temp)
     if (isMax):
         maxEvaluation = sys.maxint
         for i in range(6):
@@ -22,3 +22,15 @@ def Minimax(game, depth, isMax):
 
 def TerminalState(game):
     game.is_terminal_state()
+
+
+#Rank on number of peices the action/move yields
+def Evaluation(game):
+    if (TerminalState(game)):
+        return 4
+    elif ("Repeating move")
+        return
+    elif ("opposite move")
+        return
+    else
+        return
