@@ -1,4 +1,7 @@
 from src.kalaha import Game
+from src.AI.MiniMaxAlphaBeta import minimax
+from src.AI.Minimax import minimax0
+import math
 
 """
 This is the main script which runs the game with one player and one AI.
@@ -7,9 +10,9 @@ The human player starts.
 """
 
 
-def print_game(game):
+def print_game(game_obj):
     # Command-line textual representation of the game
-    state = game.get_state()
+    state = game_obj.get_state()
     slots = list(range(0, 6))
     player1_state = state[0]
     player2_state = state[1]
@@ -29,10 +32,10 @@ def print_game(game):
     print("=======================================")
 
 
-def check_input(str):
+def check_input(string):
     while 1:
         try:
-            val = int(input(str))
+            val = int(input(string))
             break
         except ValueError:
             print("Not a recognizable integer, please try again.")
@@ -60,10 +63,10 @@ if __name__ == "__main__":
             slot = check_input("Choose which slot to pick up (index at 0): ")
         else:
             # AI
+            # slot, _ = minimax0(game, depth=3, turn=1)
+            slot, _ = minimax(game, depth=3, turn=1, alpha=-math.inf, beta=math.inf)
 
-            # slot =
-
-            print("")
+            print("AI computing best move:", 5 - slot)
 
         game_seq.append((player_turn, slot))
         # Reverse slot if player 2 is playing
