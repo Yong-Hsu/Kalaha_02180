@@ -8,15 +8,15 @@ def minimax0(game, depth, turn):
 
     move = -1
 
-    if depth == 0 | game.is_terminal_state():
+    if depth == 0 | game_temp.is_terminal_state():
         return move, evaluation(game_temp)
 
-    if turn == 0:
+    if turn == 1:
         max_eval = -math.inf
         for i in range(6):
             is_valid_move = game_temp.take_slot(i)
             if is_valid_move:
-                _, eval_compare = minimax0(game_temp, depth - 1, 1)
+                _, eval_compare = minimax0(game_temp, depth - 1, 0)
                 # max_eval = max(max_eval, eval_compare)
                 if max_eval <= eval_compare:
                     max_eval = eval_compare
@@ -27,7 +27,7 @@ def minimax0(game, depth, turn):
         for i in range(6):
             is_valid_move = game_temp.take_slot(i)
             if is_valid_move:
-                _, eval_compare = minimax0(game_temp, depth - 1, 0)
+                _, eval_compare = minimax0(game_temp, depth - 1, 1)
                 # min_eval = min(min_eval, eval_compare)
                 if min_eval >= eval_compare:
                     min_eval = eval_compare
