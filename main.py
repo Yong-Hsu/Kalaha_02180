@@ -47,12 +47,15 @@ def check_input(string):
 if __name__ == "__main__":
     # Run game
     game = Game()
-    should_end = game.is_terminal_state()
-    winner = 0
 
     print("Running game (counter-clockwise)")
     game_seq = []
-    while not should_end:
+    while True:
+        if game.is_terminal_state():
+            winner = game.end_game()
+            print_game(game)
+            break
+
         print_game(game)
 
         player_turn = game.get_player_turn()
@@ -74,11 +77,10 @@ if __name__ == "__main__":
         # Reverse slot if player 2 is playing
         game.take_slot(slot)
 
-        if game.is_terminal_state():
-            winner = game.end_game()
-            should_end = True
-            print_game(game)
+    if winner == -1:
+        print("Game ended in a draw".format(winner))
+    else:
+        print("Game over, winner is Player {0}".format(winner))
 
-    print("Game over, winner is Player {0}".format(winner))
     print("Game sequence:", game_seq)
     input("Press Enter to end...")

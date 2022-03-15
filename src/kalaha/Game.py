@@ -2,9 +2,8 @@ import copy
 
 
 class Game:
-    def __init__(self):
-        self.state = {0: [4] * 6 + [0],
-                      1: [4] * 6 + [0]}
+    def __init__(self, state={0: [4] * 6 + [0], 1: [4] * 6 + [0]}):
+        self.state = state
         self.player_turn = 0
 
     def get_state(self):

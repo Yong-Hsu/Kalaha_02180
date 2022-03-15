@@ -132,3 +132,6 @@ dmypy.json
 .idea
 *.xml
 *.iml
+
+# Test generated files
+trial_temp/
