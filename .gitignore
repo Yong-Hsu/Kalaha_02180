@@ -134,4 +134,4 @@ dmypy.json
 *.iml
 
 # Test generated files
-trial_temp/
+_trial_temp/
