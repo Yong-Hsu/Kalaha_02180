@@ -4,8 +4,6 @@ import random
 
 from main import print_game
 from src.AI.MiniMaxAlphaBeta import minimax
-from src.kalaha import Game
-
 
 class Setup:
     def Play(game, depth, isPrint=False):
@@ -17,7 +15,7 @@ class Setup:
 
             if isPrint:
                 print_game(game)
-                isPrint("\n")
+                print("\n")
 
             player_turn = game.get_player_turn()
             # get slot choice from player or AI
@@ -31,3 +29,5 @@ class Setup:
 
             # Reverse slot if player 2 is playing
             game.take_slot(slot)
+
+

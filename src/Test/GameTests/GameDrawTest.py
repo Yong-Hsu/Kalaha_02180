@@ -9,7 +9,7 @@ class GameDrawTest(unittest.TestCase):
     @classmethod
     def setUp(cls):
         gameBoard = {0: [0] * 6 + [0], 1: [0] * 6 + [0]}
-        cls.game = Game(gameBoard)
+        cls.game = Game(state=gameBoard)
 
     def test_draw(self):
         winner = Setup.Play(self.game, depth=5)

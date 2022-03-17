@@ -2,9 +2,11 @@ import copy
 
 
 class Game:
-    def __init__(self, state={0: [4] * 6 + [0], 1: [4] * 6 + [0]}):
+    def __init__(self, player_turn=0, state={0: [4] * 6 + [0], 1: [4] * 6 + [0]}):
         self.state = state
-        self.player_turn = 0
+        self.player_turn = player_turn
+        self.isSteal = False
+        self.isRepeat = False
 
     def get_state(self):
         return copy.deepcopy(self.state)
@@ -13,6 +15,10 @@ class Game:
         return self.player_turn
 
     def take_slot(self, pocket):
+
+        currentTurn = self.get_player_turn()
+        self.isRepeat = False
+        self.isSteal = False
 
         # pocket: slot choice from the player
         # This function takes the input and change the board layout, etc
@@ -50,9 +56,11 @@ class Game:
         # Check for steal if slot is empty, on own side, and the opponent has pieces
         if concat_states[pocket] == 1 and pocket < 6 and concat_states[pocket + ((5 - pocket) * 2 + 2)] > 0:
             self.capture(pocket)
+            self.isSteal = True
 
         # New turn if pocket isn't in store
         self.player_turn = opposite_player_turn if pocket != 6 else self.player_turn
+        self.isRepeat = currentTurn == self.player_turn
         return True
 
     def capture(self, pocket):

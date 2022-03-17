@@ -15,7 +15,10 @@ def minimax(game, depth, turn, alpha, beta):
             game_temp = copy.deepcopy(game)
             is_valid_move = game_temp.take_slot(i)
             if is_valid_move:
-                _, eval_compare = minimax(game_temp, depth - 1, 0, alpha, beta)
+                if game.isRepeat:
+                    _, eval_compare = minimax(game_temp, depth - 1, 1, alpha, beta)
+                else:
+                    _, eval_compare = minimax(game_temp, depth - 1, 0, alpha, beta)
                 # max_eval = max(max_eval, eval_compare)
                 if max_eval <= eval_compare:
                     max_eval = eval_compare
@@ -31,7 +34,10 @@ def minimax(game, depth, turn, alpha, beta):
             game_temp = copy.deepcopy(game)
             is_valid_move = game_temp.take_slot(i)
             if is_valid_move:
-                _, eval_compare = minimax(game_temp, depth - 1, 1, alpha, beta)
+                if game.isRepeat:
+                    _, eval_compare = minimax(game_temp, depth - 1, 0, alpha, beta)
+                else:
+                    _, eval_compare = minimax(game_temp, depth - 1, 1, alpha, beta)
                 # min_eval = min(min_eval, eval_compare)
                 if min_eval >= eval_compare:
                     min_eval = eval_compare
@@ -42,16 +48,31 @@ def minimax(game, depth, turn, alpha, beta):
         return move, min_eval
 
 
-# evaluation of
 def evaluation(game):
     state = game.get_state()
+    delta_pieces = state[1][-1] - state[0][-1]
+
     # turn = game.get_player_turn()
 
     # implement stealing and same_turn later, we need information from the last state
-    delta_pieces = state[0][-1] - state[1][-1]
 
     # todo: about terminal state
     # todo: implement stealing and same_turn later, we need information from the last state
 
-    return delta_pieces
+    # if game.is_terminal_state():
+    #     if delta_pieces > 0:  # Terminal win
+    #         score = 4
+    #         result = 1
+    #     elif delta_pieces == 0:  # Terminal draw
+    #         result = 0
+    #     else:  # Terminal loss
+    #         score = 0
+    #         result = -1
+    # elif game.isRepeat:  # Repeat turn
+    #     score = 3
+    # elif game.isSteal:   # Steal move
+    #     score = 2
+    # else:                # Standard move
+    #     score = 1
 
+    return delta_pieces
