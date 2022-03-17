@@ -48,6 +48,12 @@ if __name__ == "__main__":
     # Run game
     game = Game()
 
+    print("Easy: 0")
+    print("Medium: 1")
+    print("Hard: 2")
+    print("Very hard (and very slow): 3")
+    depth = 4 + check_input("Choose difficulty level: ")
+
     print("Running game (counter-clockwise)")
     game_seq = []
     while True:
@@ -69,7 +75,7 @@ if __name__ == "__main__":
         else:
             # AI
             # slot, _ = minimax0(game, depth=3, turn=1)
-            slot, _ = minimax(copy.deepcopy(game), depth=5, turn=1, alpha=-math.inf, beta=math.inf)
+            slot, _ = minimax(copy.deepcopy(game), depth=depth, turn=1, alpha=-math.inf, beta=math.inf)
 
             print("AI computing best move:", 5 - slot)
 
