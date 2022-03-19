@@ -9,7 +9,7 @@ class GameRandomTest(unittest.TestCase):
 
     @classmethod
     def setUp(cls):
-        cls.iterations = 10
+        cls.iterations = 3
 
     def test_random(self):
         for i in range(self.iterations):
@@ -18,7 +18,7 @@ class GameRandomTest(unittest.TestCase):
                 gameBoard = {0: gameSetup + [0], 1: gameSetup + [0]}
                 game = Game(state=gameBoard)
 
-                winner = Setup.Play(game, depth=10)
+                winner = Setup.Play(self, game, depth=5)
                 self.assertEqual(2, winner)
 
 

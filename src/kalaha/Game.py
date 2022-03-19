@@ -76,9 +76,9 @@ class Game:
 
     def is_terminal_state(self):
         # Is terminal state: if one of the sides have no pieces
-        if sum(self.state[self.player_turn][0:-1]) == 0:
+        if sum(self.state[0][0:-1]) == 0:
             return True
-        if sum(self.state[self.player_turn if self.player_turn == 1 else 1][0:-1]) == 0:
+        if sum(self.state[1][0:-1]) == 0:
             return True
         return False
 

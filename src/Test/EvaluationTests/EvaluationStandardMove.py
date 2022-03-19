@@ -16,4 +16,4 @@ class EvaluationStandardMove(unittest.TestCase):
 
     def test_standardMove(self):
         slot, _ = minimax(self.game, depth=1, turn=1, alpha=-math.inf, beta=math.inf)
-        self.assertEqual(slot, 5)  # Actual = slot that results in a standard move
+        self.assertEqual(slot, 3)  # Actual = slot that results in a standard move

@@ -3,10 +3,10 @@ import math
 import random
 
 from main import print_game
-from src.AI.MiniMaxAlphaBeta import minimax
+from src.AI.MiniMaxAlphaBetav2 import minimax
 
 
-# Game played using MiniMaxAlphaBeta
+# Game played using MiniMaxAlphaBetav2
 class Setup:
     def Play(self, game, depth, isPrint=False):
         while True:

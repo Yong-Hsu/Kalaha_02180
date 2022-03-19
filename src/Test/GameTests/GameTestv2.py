@@ -1,6 +1,6 @@
 import unittest
 
-from src.Test.Setup import Setup
+from src.Test.SetupV2 import Setup
 from src.kalaha import Game
 
 
@@ -16,4 +16,3 @@ class GameTest(unittest.TestCase):
                 newGame = Game(state={0: [4] * 6 + [0], 1: [4] * 6 + [0]})
                 winner = Setup.Play(self, game=newGame, depth=4)
                 self.assertEqual(2, winner)
-
