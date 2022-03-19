@@ -12,5 +12,5 @@ class GameDrawTest(unittest.TestCase):
         cls.game = Game(state=gameBoard)
 
     def test_draw(self):
-        winner = Setup.Play(self.game, depth=5)
+        winner = Setup.Play(self, self.game, depth=5)
         self.assertEqual(-1, winner)
