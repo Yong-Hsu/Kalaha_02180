@@ -9,7 +9,8 @@ class GameRandomTest(unittest.TestCase):
 
     @classmethod
     def setUp(cls):
-        cls.iterations = 3
+        cls.iterations = 30
+        cls.results = []
 
     def test_random(self):
         for i in range(self.iterations):
@@ -19,6 +20,8 @@ class GameRandomTest(unittest.TestCase):
                 game = Game(state=gameBoard)
 
                 winner = Setup.Play(self, game, depth=5)
-                self.assertEqual(2, winner)
+                self.results.append(winner)
+        wincount = self.results.count(2)
+        self.assertGreater(wincount, self.iterations * 0.8)  # Assert that AI wins at least 80% of games
 
 

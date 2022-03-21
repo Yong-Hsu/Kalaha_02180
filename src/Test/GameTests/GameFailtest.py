@@ -13,4 +13,4 @@ class GameFailTest(unittest.TestCase):
 
     def test_Fail(self):
         winner = Setup.Play(self, game=self.game, depth=5, isPrint=True)
-        self.assertEqual(1, winner)
+        self.assertEqual(1, winner)  # Player wins

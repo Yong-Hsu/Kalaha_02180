@@ -13,4 +13,4 @@ class GameDrawTest(unittest.TestCase):
 
     def test_draw(self):
         winner = Setup.Play(self, self.game, depth=5)
-        self.assertEqual(-1, winner)
+        self.assertEqual(-1, winner)  # AI wins

@@ -17,5 +17,4 @@ class EvaluationSteal(unittest.TestCase):
 
     def test_steal(self):
         slot, _ = minimax(self.game, depth=1, turn=1, alpha=-math.inf, beta=math.inf)
-        # Setup.Play(self.game, depth=1, isPrint=True)
         self.assertEqual(slot, 2)  # Actual = slot that results in a steal move
